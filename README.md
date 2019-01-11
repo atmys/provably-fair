@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/atmys/provably-fair.svg?branch=master)](https://travis-ci.org/atmys/provably-fair)
 [![Coverage Status](https://coveralls.io/repos/github/atmys/provably-fair/badge.svg?branch=master)](https://coveralls.io/github/atmys/provably-fair?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/atmys/provably-fair/badge.svg?targetFile=package.json)](https://snyk.io/test/github/atmys/provably-fair?targetFile=package.json)
+[![codebeat badge](https://codebeat.co/badges/f9b951c9-3326-4a08-94db-13bc5a76dc1d)](https://codebeat.co/projects/github-com-atmys-provably-fair-master)
 
 
 Dead simple generator for provably fair gambling. Entirely callback, we need performance here.
