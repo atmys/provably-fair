@@ -1,5 +1,8 @@
 # Provably-fair
 
+[![Build Status](https://travis-ci.org/atmys/provably-fair.svg?branch=master)](https://travis-ci.org/atmys/provably-fair)
+[![Coverage Status](https://coveralls.io/repos/github/atmys/provably-fair/badge.svg?branch=master)](https://coveralls.io/github/atmys/provably-fair?branch=master)
+
 Dead simple generator for provably fair gambling. Entirely callback, we need performance here.
 Uses a new server seed on each bet to provide verification capabilty to the client right after he gets the result.
 
