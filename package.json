@@ -4,9 +4,9 @@
   "description": "Provably-fair generator for custom bets",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && nyc npm run spec",
+    "test": "npm run eslint && nyc npm run spec",
     "spec": "jasmine --config=jasmine.json",
-    "lint": "eslint .",
+    "eslint": "eslint .",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {

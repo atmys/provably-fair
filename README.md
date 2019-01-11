@@ -36,6 +36,31 @@ npm i --save provably-fair
 - `createAndChallenge({ userId = 'none', expiresIn = 60 * 60, serverSeedHash, clientSeed, guess, customResult, customValidation }, callback)` creates a new bet and compares the result with the client guess, then deletes the server seed redis key to prevent reuse. Returns `(err, valid, bet)`; 
 - `verify({ serverSeed, clientSeed, customResult }, callback)` returns serverSeedHash of provided serverSeed & reproduces bet result.
 
+#### `require('provably-fair')(client)`
+- Initialize provablyFair
+- `client` **Required:** Redis client
+#### `generateServerSeedHash(options)`
+- `options <Object>` 
+  - `userId` **Default:** none - unique client identifier
+  - `expiresIn` **Default:** 60 * 60
+- returns `hash` hash of the securely stored with Redis serverSeed.
+#### `createAndChallenge(options, callback)`
+- `options <Object>` 
+  - `userId` **Default:** none - unique client identifier
+  - `expiresIn` **Default:** 60 * 60
+  - `serverSeedHash` **Required**
+  - `clientSeed` **Required**
+  - `guess` **Required**
+  - `customResult` **Default:** `function(randomNumber) { return randomNumer }`
+  - `customValidation` **Default:** `function(guess, result) { return guess === result }`
+- `callback <Function>` returns `(err, valid, bet)`
+  - `valid <Boolean>` whether or not captcha is solved
+  - `bet <Object>`
+    - `id` bet ID
+    - `result` bet result
+    - `serverSeed`
+    - `clientSeed`
+
 ### Example : Gobelet game
 
 The client must guess a number between 1 and 10. Test it on [RunKit](https://runkit.com/atmys/provably-fair).
