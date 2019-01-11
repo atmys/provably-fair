@@ -1,6 +1,7 @@
 const redis = require('redis');
 const client = redis.createClient();
-const provablyFair = require('./index')(client);
+const provablyFairModule = require('./index');
+const provablyFair = provablyFairModule(client);
 
 const clientSeed = 'clientSeed';
 const customResult = function () {
@@ -12,6 +13,14 @@ const customValidation = function (guess, result) {
 }
 
 let serverSeedHash = '';
+
+describe('when initializing', () => {
+  it('should fail if no client provided', () => {
+    expect(function () {
+      provablyFairModule();
+    }).toThrow();
+  });
+});
 
 describe('when creating a serverSeed', () => {
 
@@ -31,6 +40,10 @@ describe('when creating and challenging', () => {
     }).toThrow();
 
     expect(function () {
+      provablyFair.createAndChallenge({});
+    }).toThrow();
+
+    expect(function () {
       provablyFair.createAndChallenge({ serverSeedHash });
     }).toThrow();
 
@@ -46,6 +59,20 @@ describe('when creating and challenging', () => {
       provablyFair.createAndChallenge({ serverSeedHash, clientSeed, customResult, customValidation, guess: 1 });
     }).toThrow();
 
+  });
+
+  it('should fail if wrong userId', done => {
+    provablyFair.createAndChallenge({ userId: 'other', serverSeedHash, clientSeed, customResult, customValidation, guess: 1 }, err => {
+      expect(err).toBeTruthy();
+      done();
+    });
+  });
+
+  it('should fail if redis errror', done => {
+    provablyFair.createAndChallenge({ serverSeedHash: { fail: true }, clientSeed, customResult, customValidation, guess: 1 }, err => {
+      expect(err).toBeTruthy();
+      done();
+    });
   });
 
   it('should fail if wrong guess', done => {
@@ -83,6 +110,26 @@ describe('when creating and challenging', () => {
 });
 
 describe('when verifying', () => {
+
+  it('should throw if missing param', () => {
+
+    expect(function () {
+      provablyFair.verify();
+    }).toThrow();
+
+    expect(function () {
+      provablyFair.verify({});
+    }).toThrow();
+
+    expect(function () {
+      provablyFair.verify({ serverSeed: 'seed' });
+    }).toThrow();
+
+    expect(function () {
+      provablyFair.verify({ serverSeed: 'seed', clientSeed });
+    }).toThrow();
+
+  });
 
   it('should return the same result & hash', done => {
     serverSeedHash = provablyFair.generateServerSeedHash();

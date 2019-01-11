@@ -23,6 +23,7 @@ module.exports = function (client = throwIfMissing('client')) {
         const key = `provably-fair:seed:${serverSeedHash}`
         client.get(key, function (err, JSONData) {
             const data = JSON.parse(JSONData);
+            /* istanbul ignore if */
             if (err) {
                 callback(err);
             } else if (!data) {
