@@ -37,7 +37,7 @@ npm i --save provably-fair
 
 ### Example : Gobelet game
 
-The client must guess a number between 1 and 10;
+The client must guess a number between 1 and 10. Test it on [RunKit](https://runkit.com/atmys/provably-fair).
 
 ```js
 // Init
