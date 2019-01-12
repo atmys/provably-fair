@@ -1,6 +1,6 @@
 {
   "name": "provably-fair",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Provably-fair generator for custom bets",
   "main": "index.js",
   "scripts": {
