@@ -10,7 +10,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
   - changelog
   - runkit playground
-  - codebeat audit
 
 ## 1.0.1 - 2019-01-11
 ### Added
